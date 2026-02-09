@@ -191,11 +191,11 @@ export default function Collection() {
 }
 
 const PRODUCT_ITEM_FRAGMENT = `#graphql
-  fragment MoneyProductItem on MoneyV2 {
+  fragment MoneyCollectionProduct on MoneyV2 {
     amount
     currencyCode
   }
-  fragment ProductItem on Product {
+  fragment CollectionProductItem on Product {
     id
     handle
     title
@@ -208,10 +208,10 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
     }
     priceRange {
       minVariantPrice {
-        ...MoneyProductItem
+        ...MoneyCollectionProduct
       }
       maxVariantPrice {
-        ...MoneyProductItem
+        ...MoneyCollectionProduct
       }
     }
   }
@@ -258,7 +258,7 @@ const COLLECTION_QUERY = `#graphql
           }
         }
         nodes {
-          ...ProductItem
+          ...CollectionProductItem
         }
         pageInfo {
           hasPreviousPage

@@ -71,7 +71,7 @@ export async function loader({request, context}: LoaderFunctionArgs) {
 }
 
 const COLLECTION_BY_HANDLE_QUERY = `#graphql
-  query CollectionByHandle(
+  query CollectionByHandleApi(
     $handle: String!
     $country: CountryCode
     $language: LanguageCode

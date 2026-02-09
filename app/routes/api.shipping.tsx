@@ -55,7 +55,7 @@ const CART_DELIVERY_GROUPS_QUERY = `#graphql
 
 // Localization query for available countries from Shopify Markets
 const LOCALIZATION_QUERY = `#graphql
-  query Localization($country: CountryCode, $language: LanguageCode)
+  query ShippingLocalization($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
     localization {
       availableCountries {
