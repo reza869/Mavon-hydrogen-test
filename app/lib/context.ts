@@ -21,34 +21,41 @@ declare global {
 
 /**
  * Creates Hydrogen context for React Router 7.9.x
- * Returns HydrogenRouterContextProvider with hybrid access patterns
- * */
+ * Compatible with both Shopify Oxygen and Vercel (Node.js) runtimes.
+ */
 export async function createHydrogenRouterContext(
   request: Request,
   env: Env,
-  executionContext: ExecutionContext,
+  executionContext?: ExecutionContext,
 ) {
-  /**
-   * Open a cache instance in the worker and a custom session instance.
-   */
-  if (!env?.SESSION_SECRET) {
+  // On Vercel, env vars come from process.env instead of the Oxygen env parameter
+  const resolvedEnv = env?.SESSION_SECRET
+    ? env
+    : (process.env as unknown as Env);
+
+  if (!resolvedEnv?.SESSION_SECRET) {
     throw new Error('SESSION_SECRET environment variable is not set');
   }
 
-  const waitUntil = executionContext.waitUntil.bind(executionContext);
-  const [cache, session] = await Promise.all([
-    caches.open('hydrogen'),
-    AppSession.init(request, [env.SESSION_SECRET]),
-  ]);
+  const waitUntil = executionContext?.waitUntil?.bind(executionContext) ?? (() => {});
+
+  // caches.open() is only available on Cloudflare Workers / Oxygen
+  let cache: Cache | undefined;
+  try {
+    cache = typeof caches !== 'undefined' ? await caches.open('hydrogen') : undefined;
+  } catch {
+    cache = undefined;
+  }
+
+  const session = await AppSession.init(request, [resolvedEnv.SESSION_SECRET]);
 
   const hydrogenContext = createHydrogenContext(
     {
-      env,
+      env: resolvedEnv,
       request,
       cache,
       waitUntil,
       session,
-      // Or detect from URL path based on locale subpath, cookies, or any other strategy
       i18n: getLocaleFromRequest(request),
       cart: {
         queryFragment: CART_QUERY_FRAGMENT,

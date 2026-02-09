@@ -5,12 +5,13 @@ import {createHydrogenRouterContext} from '~/lib/context';
 
 /**
  * Export a fetch handler in module format.
+ * Compatible with both Shopify Oxygen and Vercel runtimes.
  */
 export default {
   async fetch(
     request: Request,
     env: Env,
-    executionContext: ExecutionContext,
+    executionContext?: ExecutionContext,
   ): Promise<Response> {
     try {
       const hydrogenContext = await createHydrogenRouterContext(
