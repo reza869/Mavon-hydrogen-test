@@ -1,0 +1,289 @@
+/**
+ * Mavon Hydrogen - Color Scheme System
+ *
+ * This file defines color schemes that mirror the Mavon Liquid theme's
+ * `color_schemes` schema settings. In the Liquid theme, these are dynamically
+ * generated based on theme settings with RGB triplet values.
+ *
+ * In Hydrogen, these are statically defined but structured for easy switching
+ * via data attributes: [data-color-scheme="scheme-2"]
+ *
+ * Source: layout/theme.liquid (lines 78-114)
+ *
+ * RGB Format: Colors use comma-separated RGB values (e.g., 18, 18, 18)
+ * This allows for alpha manipulation: rgba(var(--color-foreground), 0.75)
+ */
+
+/* =====================================================================
+ * DEFAULT COLOR SCHEME (Scheme 1 - Light Theme)
+ * Applied to :root and body by default
+ * ===================================================================== */
+ :root,
+ .color-scheme-1,
+ [data-color-scheme="scheme-1"] {
+   /* Background */
+   --color-background: 255, 255, 255;
+   --gradient-background: #ffffff;
+ 
+   /* Foreground / Text */
+   --color-foreground: 51, 51, 51;
+   --color-shadow: 51, 51, 51;
+ 
+   /* Primary Button */
+   --color-button: 18, 18, 18;
+   --color-button-text: 255, 255, 255;
+   --primary-button-hover-background: 18, 18, 18;
+   --primary-button-hover-text: 255, 255, 255;
+ 
+   /* Secondary Button */
+   --color-secondary-button: 255, 255, 255;
+   --color-secondary-button-text: 18, 18, 18;
+   --secondary-button-hover-text: 255, 255, 255;
+   --secondary-button-hover-background: 18, 18, 18;
+ 
+   /* Links */
+   --color-link: 18, 18, 18;
+   --text-link-hover-color: 45, 45, 45;
+ 
+   /* Badges */
+   --color-badge-foreground: 255, 255, 255;
+   --color-badge-background: 18, 18, 18;
+   --color-badge-border: 255, 255, 255;
+ 
+   /* Product Cart Button */
+   --product-color-button: 255, 255, 255;
+   --product-color-button-text: 18, 18, 18;
+   --product-button-hover-background: 18, 18, 18;
+   --product-button-hover-text: 255, 255, 255;
+ 
+   /* Highlight / Accent Gradient */
+   --accent-highlight-gradient: linear-gradient(90deg, #f5d77a, #d4af37);
+ 
+   /* Payment terms */
+   --payment-terms-background-color: rgb(18, 18, 18);
+ }
+ 
+ /* =====================================================================
+  * COLOR SCHEME 2 - Dark Theme
+  * Inverted colors for dark mode sections
+  * ===================================================================== */
+ .color-scheme-2,
+ [data-color-scheme="scheme-2"] {
+   /* Background */
+   --color-background: 248, 248, 248;
+   --gradient-background: #121212;
+ 
+   /* Foreground / Text */
+   --color-foreground: 51, 51, 51;
+   --color-shadow: 18, 18, 18;
+ 
+   /* Primary Button */
+   --color-button: 18, 18, 18;
+   --color-button-text: 255, 255, 255;
+   --primary-button-hover-background: 255, 255, 255;
+   --primary-button-hover-text: 18, 18, 18;
+ 
+   /* Secondary Button */
+   --color-secondary-button: 255, 255, 255;
+   --color-secondary-button-text: 18, 18, 18;
+   --secondary-button-hover-text: 255, 255, 255;
+   --secondary-button-hover-background: 18, 18, 18;
+ 
+   /* Links */
+   --color-link: 18, 18, 18;
+   --text-link-hover-color: 45, 45, 45;
+ 
+   /* Badges */
+   --color-badge-foreground: 255, 255, 255;
+   --color-badge-background: 18, 18, 18;
+   --color-badge-border: 255, 255, 255;
+ 
+   /* Product Cart Button */
+   --product-color-button: 255, 255, 255;
+   --product-color-button-text: 18, 18, 18;
+   --product-button-hover-background: 18, 18, 18;
+   --product-button-hover-text: 255, 255, 255;
+ 
+   /* Highlight / Accent Gradient */
+   --accent-highlight-gradient: linear-gradient(90deg, #f5d77a, #d4af37);
+ 
+   /* Payment terms */
+   --payment-terms-background-color: rgb(18, 18, 18);
+ }
+ 
+ /* =====================================================================
+  * COLOR SCHEME 3 - Accent Theme
+  * For highlighted sections, sale banners, CTAs
+  * ===================================================================== */
+ .color-scheme-3,
+ [data-color-scheme="scheme-3"] {
+   /* Background - Warm accent */
+   --color-background: 36, 40, 51;
+   --gradient-background: linear-gradient(135deg, #d4af37, #f5d77a);
+ 
+   /* Foreground / Text */
+   --color-foreground: 255, 255, 255;
+   --color-shadow: 0, 0, 0;
+ 
+   /* Primary Button */
+   --color-button: 255, 255, 255;
+   --color-button-text: 18, 18, 18;
+   --primary-button-hover-background: 18, 18, 18;
+   --primary-button-hover-text: 255, 255, 255;
+ 
+   /* Secondary Button */
+   --color-secondary-button: transparent;
+   --color-secondary-button-text: 255, 255, 255;
+   --secondary-button-hover-text: 255, 255, 255;
+   --secondary-button-hover-background: 18, 18, 18;
+ 
+   /* Links */
+   --color-link: 18, 18, 18;
+   --text-link-hover-color: 45, 45, 45;
+ 
+   /* Badges */
+   --color-badge-foreground: 18, 18, 18;
+   --color-badge-background: 255, 255, 255;
+   --color-badge-border: 18, 18, 18;
+ 
+   /* Product Cart Button */
+   --product-color-button: 255, 255, 255;
+   --product-color-button-text: 18, 18, 18;
+   --product-button-hover-background: 18, 18, 18;
+   --product-button-hover-text: 255, 255, 255;
+ 
+   /* Highlight / Accent Gradient */
+   --accent-highlight-gradient: linear-gradient(90deg, #121212, #2d2d2d);
+ 
+   /* Payment terms */
+   --payment-terms-background-color: rgb(212, 175, 55);
+ }
+ 
+ /* =====================================================================
+  * COLOR SCHEME 4 - Soft Neutral
+  * For subtle, muted sections
+  * ===================================================================== */
+ .color-scheme-4,
+ [data-color-scheme="scheme-4"] {
+   /* Background - Light gray */
+   --color-background: 18, 18, 18;
+   --gradient-background: #f5f5f5;
+ 
+   /* Foreground / Text */
+   --color-foreground: 255, 255, 255;
+   --color-shadow: 18, 18, 18;
+ 
+   /* Primary Button */
+   --color-button: 18, 18, 18;
+   --color-button-text: 255, 255, 255;
+   --primary-button-hover-background: 255, 255, 255;
+   --primary-button-hover-text: 18, 18, 18;
+ 
+   /* Secondary Button */
+   --color-secondary-button: transparent;
+   --color-secondary-button-text: 255, 255, 255;
+   --secondary-button-hover-text: 255, 255, 255;
+   --secondary-button-hover-background: 18, 18, 18;
+ 
+   /* Links */
+   --color-link: 18, 18, 18;
+   --text-link-hover-color: 45, 45, 45;
+ 
+   /* Badges */
+   --color-badge-foreground: 18, 18, 18;
+   --color-badge-background: 255, 255, 255;
+   --color-badge-border: 18, 18, 18;
+ 
+   /* Product Cart Button */
+   --product-color-button: 18, 18, 18;
+   --product-color-button-text: 255, 255, 255;
+   --product-button-hover-background: 18, 18, 18;
+   --product-button-hover-text: 255, 255, 255;
+ 
+   /* Highlight / Accent Gradient */
+   --accent-highlight-gradient: linear-gradient(90deg, #d4af37, #f5d77a);
+ 
+   /* Payment terms */
+   --payment-terms-background-color: rgb(245, 245, 245);
+ }
+ 
+ /* =====================================================================
+  * COLOR SCHEME 4 - Soft Neutral
+  * For subtle, muted sections
+  * ===================================================================== */
+ .color-scheme-5,
+ [data-color-scheme="scheme-5"] {
+   /* Background - Light gray */
+   --color-background: 253, 249, 238;
+   --gradient-background: #f5f5f5;
+ 
+   /* Foreground / Text */
+   --color-foreground: 18, 18, 18;
+   --color-shadow: 0, 0, 0;
+ 
+   /* Primary Button */
+   --color-button: 18, 18, 18;
+   --color-button-text: 255, 255, 255;
+   --primary-button-hover-background: 18, 18, 18;
+   --primary-button-hover-text: 255, 255, 255;
+ 
+   /* Secondary Button */
+   --color-secondary-button: transparent;
+   --color-secondary-button-text: 18, 18, 18;
+   --secondary-button-hover-text: 255, 255, 255;
+   --secondary-button-hover-background: 18, 18, 18;
+ 
+   /* Links */
+   --color-link: 18, 18, 18;
+   --text-link-hover-color: 45, 45, 45;
+ 
+   /* Badges */
+   --color-badge-foreground: 45, 45, 45;
+   --color-badge-background: 255, 255, 255;
+   --color-badge-border: 45, 45, 45;
+ 
+   /* Product Cart Button */
+   --product-color-button: 255, 255, 255;
+   --product-color-button-text: 18, 18, 18;
+   --product-button-hover-background: 18, 18, 18;
+   --product-button-hover-text: 255, 255, 255;
+ 
+   /* Highlight / Accent Gradient */
+   --accent-highlight-gradient: linear-gradient(90deg, #d4af37, #f5d77a);
+ 
+   /* Payment terms */
+   --payment-terms-background-color: rgb(245, 245, 245);
+ }
+ 
+ /* =====================================================================
+  * BODY & COLOR APPLICATION
+  * From theme.liquid (lines 117-120)
+  * ===================================================================== */
+ body,
+ .color-background-1,
+ .color-background-2,
+ .color-inverse,
+ .color-accent-1,
+ .color-accent-2 {
+   color: rgba(var(--color-foreground), 0.75);
+   background-color: rgb(var(--color-background));
+ }
+ 
+ /* Gradient background utility */
+ .gradient {
+   background: rgb(var(--color-background));
+   background: var(--gradient-background);
+   background-attachment: fixed;
+ }
+ 
+ /* Background secondary utility */
+ .background-secondary {
+   background-color: rgba(var(--color-foreground), 0.04);
+   padding: 4rem 0 5rem;
+ }
+ 
+ @media screen and (min-width: 750px) {
+   .background-secondary {
+     padding: 6rem 0 5rem;
+   }
+ }

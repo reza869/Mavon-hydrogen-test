@@ -1,0 +1,1996 @@
+/* =====================================================================
+ * SECTIONS CSS
+ * Styles for homepage sections including Featured Collection
+ * ===================================================================== */
+
+/* =====================================================================
+ * SECTION CONTAINER
+ * ===================================================================== */
+.section {
+  position: relative;
+  background-color: rgb(var(--color-background));
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* Container Fluid - fullwidth with side padding */
+.container-fluid {
+  --offset-fluid: 3rem;
+  padding-left: var(--offset-fluid);
+  padding-right: var(--offset-fluid);
+}
+
+@media only screen and (max-width: 749px) {
+  .container-fluid {
+    --offset-fluid: 1.5rem;
+  }
+}
+
+/* Dynamic padding via CSS custom properties */
+.section[style*='--section-padding-top-desktop'] {
+  padding-top: calc(var(--section-padding-top-desktop) * 1px);
+}
+
+.section[style*='--section-padding-bottom-desktop'] {
+  padding-bottom: calc(var(--section-padding-bottom-desktop) * 1px);
+}
+
+@media only screen and (max-width: 749px) {
+  .section[style*='--section-padding-top-mobile'] {
+    padding-top: calc(var(--section-padding-top-mobile) * 1px);
+  }
+
+  .section[style*='--section-padding-bottom-mobile'] {
+    padding-bottom: calc(var(--section-padding-bottom-mobile) * 1px);
+  }
+}
+
+/* =====================================================================
+ * SECTION HEADER
+ * ===================================================================== */
+.section-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.section-header--left {
+  justify-content: flex-start;
+}
+
+.section-header--center {
+  justify-content: center;
+  text-align: center;
+}
+
+.section-header--center .section-header__content {
+  width: 100%;
+}
+
+.section-header--right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.section-header__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.section-header__title {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  letter-spacing: var(--heading-letter-spacing);
+  line-height: var(--heading-line-height);
+  color: rgb(var(--color-foreground));
+  margin: 0;
+}
+
+.section-header__subheading {
+  font-size: 1.6rem;
+  color: rgba(var(--color-foreground), 0.6);
+  margin: 0.8rem 0 0 0;
+}
+
+.section-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* Mobile alignment overrides */
+@media only screen and (max-width: 749px) {
+  .section-header--mobile-left {
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  .section-header--mobile-center {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .section-header--mobile-center .section-header__content {
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-header--mobile-center .section-header__actions {
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .section-header--mobile-right {
+    text-align: right;
+    justify-content: flex-end;
+  }
+}
+
+/* =====================================================================
+ * PRODUCT SLIDER
+ * ===================================================================== */
+.product-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.product-slider__track {
+  display: flex;
+  transition: transform 0.4s ease-out;
+}
+
+.product-slider__page {
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.product-slider__item {
+  flex-shrink: 0;
+}
+
+.product-slider__item--empty {
+  visibility: hidden;
+}
+
+/* =====================================================================
+ * SLIDER NAVIGATION
+ * ===================================================================== */
+.slider-navigation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.slider-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  background: rgb(var(--color-background));
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: rgb(var(--color-foreground));
+  padding: 0;
+}
+
+.slider-arrow:hover:not(:disabled) {
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+  border-color: rgb(var(--color-foreground));
+}
+
+.slider-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.slider-arrow--round {
+  border-radius: 50%;
+}
+
+.slider-arrow--square {
+  border-radius: 0;
+}
+
+.slider-arrow--noborder {
+  border: none;
+  background: transparent;
+}
+
+.slider-arrow--noborder:hover:not(:disabled) {
+  background: transparent;
+  color: rgba(var(--color-foreground), 0.6);
+}
+
+/* =====================================================================
+ * PAGINATION STYLES
+ * ===================================================================== */
+
+/* Counter: "1 / 8" */
+.slider-pagination--counter {
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.6);
+  font-weight: 500;
+  min-width: 5rem;
+  text-align: center;
+}
+
+/* Bullets */
+.slider-pagination--bullets {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.slider-bullet {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: rgba(var(--color-foreground), 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.slider-bullet:hover,
+.slider-bullet--active {
+  background: rgb(var(--color-foreground));
+}
+
+/* Progress Bar */
+.slider-pagination--progressbar {
+  width: 100%;
+  max-width: 12rem;
+  height: 0.3rem;
+  background: rgba(var(--color-foreground), 0.1);
+  border-radius: 0.15rem;
+  overflow: hidden;
+}
+
+.slider-progressbar__fill {
+  height: 100%;
+  background: rgb(var(--color-foreground));
+  transition: width 0.3s ease;
+}
+
+/* =====================================================================
+ * NAVIGATION POSITIONS
+ * ===================================================================== */
+
+/* Top position - in header actions (default, no special styles needed) */
+
+/* Middle position - absolute overlay on slider */
+.slider-nav--middle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.slider-nav--middle .slider-arrow {
+  pointer-events: auto;
+}
+
+.slider-nav--middle .slider-pagination--counter,
+.slider-nav--middle .slider-pagination--bullets,
+.slider-nav--middle .slider-pagination--progressbar {
+  display: none;
+}
+
+/* Bottom position - below content */
+.slider-nav--bottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+/* =====================================================================
+ * PRODUCT GRID (non-slider mode)
+ * ===================================================================== */
+.featured-products-grid {
+  display: grid;
+  gap: var(--grid-desktop-horizontal-spacing, 20px);
+}
+
+/* Dynamic columns via CSS custom property */
+.featured-products-grid[style*='--desktop-cols'] {
+  grid-template-columns: repeat(var(--desktop-cols), 1fr);
+}
+
+@media only screen and (max-width: 749px) {
+  .featured-products-grid {
+    gap: var(--grid-mobile-horizontal-spacing, 15px);
+  }
+
+  .featured-products-grid[style*='--mobile-cols'] {
+    grid-template-columns: repeat(var(--mobile-cols), 1fr);
+  }
+}
+
+/* =====================================================================
+ * FEATURED COLLECTION SECTION
+ * ===================================================================== */
+.featured-collection-section {
+  position: relative;
+}
+
+.featured-collection-section__content {
+  position: relative;
+}
+
+.featured-collection-section__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+/* Button at bottom of section */
+.featured-collection-section__button--bottom {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* =====================================================================
+ * RESPONSIVE ADJUSTMENTS
+ * ===================================================================== */
+@media only screen and (max-width: 749px) {
+  .section-header {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .slider-arrow {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+
+  .slider-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .featured-collection-section__footer,
+  .featured-collection-section__button--bottom {
+    margin-top: 2rem;
+  }
+}
+
+/* =====================================================================
+ * COLLECTION LIST SECTION
+ * ===================================================================== */
+.collection-list-section {
+  position: relative;
+}
+
+.collection-list-section__content {
+  position: relative;
+}
+
+/* Collection Slider */
+.collection-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.collection-slider__track {
+  display: flex;
+  transition: transform 0.4s ease-out;
+}
+
+.collection-slider__page {
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.collection-slider__item {
+  flex-shrink: 0;
+}
+
+.collection-slider__item--empty {
+  visibility: hidden;
+}
+
+/* Collection Grid */
+.collection-list-grid {
+  display: grid;
+  gap: var(--grid-desktop-horizontal-spacing, 20px);
+}
+
+.collection-list-grid[style*='--desktop-cols'] {
+  grid-template-columns: repeat(var(--desktop-cols), 1fr);
+}
+
+@media only screen and (max-width: 749px) {
+  .collection-list-grid {
+    gap: var(--grid-mobile-horizontal-spacing, 15px);
+  }
+
+  .collection-list-grid[style*='--mobile-cols'] {
+    grid-template-columns: repeat(var(--mobile-cols), 1fr);
+  }
+}
+
+/* Collection Button at Bottom */
+.collection-list-section__button--bottom {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 749px) {
+  .collection-list-section__button--bottom {
+    margin-top: 2rem;
+  }
+}
+
+/* Progress Bar Pagination at Bottom */
+.slider-pagination-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 6rem;
+}
+
+/* Progress Bar Only (no arrows) - full width below content */
+.slider-pagination-bottom--no-arrows {
+  justify-content: stretch;
+}
+
+.slider-pagination-bottom--no-arrows .slider-pagination--progressbar {
+  flex: 1;
+  max-width: none;
+}
+
+/* Bullets/Counter centered at bottom */
+.slider-pagination-bottom--center {
+  justify-content: center;
+}
+
+.slider-pagination-bottom--center .slider-pagination--counter {
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.6);
+  font-weight: 500;
+}
+
+.slider-pagination-bottom--center .slider-pagination--bullets {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.slider-pagination-bottom--center .slider-bullet {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: rgba(var(--color-foreground), 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.slider-pagination-bottom--center .slider-bullet:hover,
+.slider-pagination-bottom--center .slider-bullet--active {
+  background: rgb(var(--color-foreground));
+}
+
+@media only screen and (max-width: 749px) {
+  .slider-pagination-bottom {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .slider-pagination-bottom .slider-arrow {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+}
+
+/* =====================================================================
+ * COLLECTION CARD
+ * ===================================================================== */
+.collection-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.collection-card__image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.collection-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.collection-card:hover .collection-card__image {
+  transform: scale(1.05);
+}
+
+.collection-card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.collection-card__content {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Desktop/Mobile visibility for content position */
+@media only screen and (min-width: 750px) {
+  .collection-card__overlay--mobile {
+    display: none !important;
+  }
+
+  .collection-card__content--mobile {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  .collection-card__overlay--desktop {
+    display: none !important;
+  }
+
+  .collection-card__content--desktop {
+    display: none !important;
+  }
+
+  .collection-card__overlay--mobile {
+    display: flex !important;
+  }
+
+  .collection-card__content--mobile {
+    display: block !important;
+  }
+}
+
+/* =====================================================================
+ * SWIPER SLIDER STYLES
+ * ===================================================================== */
+.collection-slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.collection-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.collection-swiper .swiper-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+.collection-swiper .swiper-slide {
+  height: auto;
+  box-sizing: border-box;
+}
+
+/* Ensure cards fill the slide */
+.collection-swiper .swiper-slide .collection-card {
+  width: 100%;
+  height: 100%;
+}
+
+/* Hide default Swiper navigation */
+.collection-swiper .swiper-button-prev,
+.collection-swiper .swiper-button-next,
+.collection-swiper .swiper-pagination {
+  display: none !important;
+}
+
+/* Grab cursor for dragging */
+.collection-swiper {
+  cursor: grab;
+}
+
+.collection-swiper:active {
+  cursor: grabbing;
+}
+
+/* Fix for slide transitions in loop mode */
+.collection-swiper .swiper-slide-duplicate {
+  opacity: 1 !important;
+}
+
+/* Prevent text selection during drag */
+.collection-swiper .swiper-slide {
+  user-select: none;
+}
+
+/* =====================================================================
+ * PRODUCT SWIPER SLIDER STYLES
+ * ===================================================================== */
+.product-slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.product-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.product-swiper .swiper-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+.product-swiper .swiper-slide {
+  height: auto;
+  box-sizing: border-box;
+}
+
+/* Hide default Swiper navigation */
+.product-swiper .swiper-button-prev,
+.product-swiper .swiper-button-next,
+.product-swiper .swiper-pagination {
+  display: none !important;
+}
+
+/* Grab cursor for dragging */
+.product-swiper {
+  cursor: grab;
+}
+
+.product-swiper:active {
+  cursor: grabbing;
+}
+
+/* Fix for slide transitions in loop mode */
+.product-swiper .swiper-slide-duplicate {
+  opacity: 1 !important;
+}
+
+/* Prevent text selection during drag */
+.product-swiper .swiper-slide {
+  user-select: none;
+}
+
+/* =====================================================================
+ * SLIDESHOW SECTION
+ * ===================================================================== */
+
+.slideshow-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slideshow-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.slideshow-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.slideshow-swiper .swiper-slide {
+  height: auto;
+}
+
+/* Hide default Swiper navigation */
+.slideshow-swiper .swiper-button-prev,
+.slideshow-swiper .swiper-button-next,
+.slideshow-swiper .swiper-pagination {
+  display: none !important;
+}
+
+/* =====================================================================
+ * SLIDESHOW SLIDE
+ * ===================================================================== */
+
+.slideshow-slide {
+  position: relative;
+  width: 100%;
+}
+
+.slideshow-slide__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =====================================================================
+ * SLIDESHOW COLOR SCHEMES
+ * Uses theme's color scheme classes which set --color-foreground and --color-background
+ * ===================================================================== */
+
+/* Color scheme applies to heading, subheading using --color-foreground from color-schemes.css */
+.slideshow-slide.color-scheme-1 .banner__heading,
+.slideshow-slide.color-scheme-1 .banner__text,
+.slideshow-slide.color-scheme-2 .banner__heading,
+.slideshow-slide.color-scheme-2 .banner__text,
+.slideshow-slide.color-scheme-3 .banner__heading,
+.slideshow-slide.color-scheme-3 .banner__text,
+.slideshow-slide.color-scheme-4 .banner__heading,
+.slideshow-slide.color-scheme-4 .banner__text,
+.slideshow-slide.color-scheme-5 .banner__heading,
+.slideshow-slide.color-scheme-5 .banner__text {
+  color: rgb(var(--color-foreground));
+}
+
+/* Mobile color scheme - overrides desktop scheme on mobile (<750px) */
+@media only screen and (max-width: 749px) {
+  /* Mobile scheme background for content below image mode */
+  .slideshow-slide--content-below.mobile-color-scheme-1 .slideshow__text-wrapper,
+  .slideshow-slide--content-below.mobile-color-scheme-2 .slideshow__text-wrapper,
+  .slideshow-slide--content-below.mobile-color-scheme-3 .slideshow__text-wrapper,
+  .slideshow-slide--content-below.mobile-color-scheme-4 .slideshow__text-wrapper,
+  .slideshow-slide--content-below.mobile-color-scheme-5 .slideshow__text-wrapper {
+    background-color: rgb(var(--color-background));
+  }
+
+  .slideshow-slide.mobile-color-scheme-1 .banner__heading,
+  .slideshow-slide.mobile-color-scheme-1 .banner__text,
+  .slideshow-slide.mobile-color-scheme-2 .banner__heading,
+  .slideshow-slide.mobile-color-scheme-2 .banner__text,
+  .slideshow-slide.mobile-color-scheme-3 .banner__heading,
+  .slideshow-slide.mobile-color-scheme-3 .banner__text,
+  .slideshow-slide.mobile-color-scheme-4 .banner__heading,
+  .slideshow-slide.mobile-color-scheme-4 .banner__text,
+  .slideshow-slide.mobile-color-scheme-5 .banner__heading,
+  .slideshow-slide.mobile-color-scheme-5 .banner__text {
+    color: rgb(var(--color-foreground));
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW HEIGHT CLASSES
+ * ===================================================================== */
+
+/* Mobile < 599px */
+@media screen and (max-width: 599px) {
+  .slideshow__banner--media--large .slideshow-slide {
+    min-height: 39rem;
+  }
+  .slideshow__banner--media--medium .slideshow-slide {
+    min-height: 34rem;
+  }
+  .slideshow__banner--media--small .slideshow-slide {
+    min-height: 28rem;
+  }
+  .slideshow__banner--media--adapt_image .slideshow-slide {
+    min-height: auto;
+  }
+  .slideshow__banner--media--adapt_image.placeholder .slideshow-slide {
+    height: 38rem;
+  }
+}
+
+/* Tablet 599-749px */
+@media screen and (min-width: 599px) and (max-width: 749px) {
+  .slideshow__banner--media--large .slideshow-slide {
+    min-height: 55rem;
+  }
+  .slideshow__banner--media--medium .slideshow-slide {
+    min-height: 45rem;
+  }
+  .slideshow__banner--media--small .slideshow-slide {
+    min-height: 35rem;
+  }
+  .slideshow__banner--media--adapt_image.placeholder .slideshow-slide {
+    height: 38rem;
+  }
+}
+
+/* Tablet-Desktop 750-991px */
+@media screen and (min-width: 750px) and (max-width: 991px) {
+  .slideshow__banner--media--large .slideshow-slide {
+    min-height: 65rem;
+  }
+  .slideshow__banner--media--medium .slideshow-slide {
+    min-height: 55rem;
+  }
+  .slideshow__banner--media--small .slideshow-slide {
+    min-height: 45rem;
+  }
+  .slideshow__banner--media--adapt_image.placeholder .slideshow-slide {
+    height: 100vh;
+  }
+}
+
+/* Desktop 992px+ */
+@media screen and (min-width: 992px) {
+  .slideshow__banner--media--large .slideshow-slide {
+    min-height: 89rem;
+  }
+  .slideshow__banner--media--medium .slideshow-slide {
+    min-height: 65rem;
+  }
+  .slideshow__banner--media--small .slideshow-slide {
+    min-height: 50rem;
+  }
+  .slideshow__banner--media--adapt_image.placeholder .slideshow-slide {
+    height: 100vh;
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW MEDIA (IMAGE)
+ * ===================================================================== */
+
+.slideshow__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Adapt height mode - image in normal flow */
+.slideshow__banner--media--adapt_image .slideshow__media {
+  position: relative;
+  inset: auto;
+}
+
+.slideshow__media:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  background: #000000;
+  opacity: var(--overlay-opacity, 0);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.slideshow__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* Adapt height - image displays naturally */
+.slideshow__banner--media--adapt_image .slideshow__image {
+  height: auto;
+  display: block;
+}
+
+/* Adapt height - content wrapper overlays the image */
+.slideshow__banner--media--adapt_image .slideshow-slide {
+  position: relative;
+}
+
+.slideshow__banner--media--adapt_image .slideshow__text-wrapper {
+  position: absolute;
+  inset: 0;
+  height: auto;
+}
+
+/* Desktop/Mobile image visibility */
+.slideshow__image--desktop {
+  display: block;
+}
+
+.slideshow__image--mobile {
+  display: none !important;
+}
+
+@media only screen and (max-width: 749px) {
+  .slideshow__image--desktop {
+    display: none !important;
+  }
+  .slideshow__image--mobile {
+    display: block !important;
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW CONTENT
+ * ===================================================================== */
+
+.slideshow__text > * + * {
+  margin-top: 1.5rem;
+}
+
+.slideshow__text .banner__heading + .banner__text {
+  margin-top: 1rem;
+}
+
+@media only screen and (min-width: 750px) {
+  .slideshow__text .banner__heading + .banner__text {
+    margin-top: 2rem;
+  }
+}
+
+.slideshow__text-wrapper {
+  max-width: calc(var(--container-lg-width) - 3rem);
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+  padding: 2rem;
+}
+
+@media only screen and (max-width: 749px) {
+  .slideshow__text-wrapper {
+    padding: 3rem 1.5rem;
+    width: auto;
+  }
+}
+
+.slideshow__text {
+  position: relative;
+  z-index: 9;
+  max-width: 60rem;
+}
+
+/* .slideshow__text.banner__box {
+  padding: 0;
+} */
+
+@media only screen and (max-width: 749px) {
+  .slideshow__text.banner__box {
+    padding: 3.5rem 0.5rem 2rem;
+  }
+}
+
+/* Content Position */
+.top--position .slideshow__text {
+  top: 5rem;
+}
+
+.bottom--position .slideshow__text {
+  bottom: 5rem;
+}
+
+/* Content Alignment - Desktop */
+@media only screen and (min-width: 750px) {
+  .slider--alignment__desktop--center {
+    text-align: center;
+  }
+  .slider--alignment__desktop--center .slideshow--banner-button {
+    justify-content: center;
+  }
+  .slider--alignment__desktop--left {
+    text-align: left;
+  }
+  .slider--alignment__desktop--left .slideshow--banner-button {
+    justify-content: flex-start;
+  }
+  .slider--alignment__desktop--right {
+    text-align: right;
+  }
+  .slider--alignment__desktop--right .slideshow--banner-button {
+    justify-content: flex-end;
+  }
+}
+
+/* Content Alignment - Mobile */
+@media only screen and (max-width: 749px) {
+  .slider--alignment__mobile--center {
+    text-align: center;
+  }
+  .slider--alignment__mobile--center .slideshow--banner-button {
+    justify-content: center;
+  }
+  .slider--alignment__mobile--left {
+    text-align: left;
+  }
+  .slider--alignment__mobile--left .slideshow--banner-button {
+    justify-content: flex-start;
+  }
+  .slider--alignment__mobile--right {
+    text-align: right;
+  }
+  .slider--alignment__mobile--right .slideshow--banner-button {
+    justify-content: flex-end;
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW HEADINGS
+ * ===================================================================== */
+
+.banner__heading > span {
+  display: block;
+}
+
+.banner__heading.line--normal > span {
+  line-height: 1.2;
+}
+
+.banner__heading.line--medium > span {
+  line-height: 1.25;
+}
+
+.banner__heading.line--high > span {
+  line-height: 1.3;
+}
+
+@media only screen and (min-width: 1200px) {
+  .slideshow__text .h0 {
+    font-size: 9.6rem;
+  }
+  .slideshow__text .h1 {
+    font-size: 7rem;
+  }
+  .slideshow__text .h2 {
+    font-size: 5rem;
+  }
+  .banner__heading.line--normal > span {
+    line-height: 1;
+  }
+  .banner__heading.line--medium > span {
+    line-height: 1.25;
+  }
+  .banner__heading.line--high > span {
+    line-height: 1.5;
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW TEXT & BUTTONS
+ * ===================================================================== */
+
+.banner__text {
+  color: rgba(var(--color-foreground));
+}
+
+.banner__text > span {
+  display: block;
+}
+
+.slideshow__text .banner__text {
+  font-size: 1.7rem;
+}
+
+@media only screen and (min-width: 750px) {
+  .slideshow__text .banner__text {
+    font-size: 2rem;
+  }
+}
+
+.slideshow--banner-button {
+  margin-top: 2.5rem;
+}
+
+.banner__buttons.slideshow--banner-button {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+@media only screen and (max-width: 749px) {
+  .banner__buttons.slideshow--banner-button {
+    gap: 1rem;
+    justify-content: center;
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW NAVIGATION CONTROLS
+ * ===================================================================== */
+
+.slideshow--slider.slider--controls--bullet {
+  position: absolute;
+  bottom: 3rem;
+  z-index: 10;
+  left: 0;
+  right: 0;
+}
+
+@media only screen and (max-width: 749px) {
+  .slideshow--slider.slider--controls--bullet {
+    position: relative;
+    bottom: auto;
+    margin-top: 15px;
+  }
+}
+
+.slideshow--controls--inner {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.slideshow--slider .slideshow--nav-button {
+  position: inherit;
+  margin: 0;
+  padding: 0 0.8rem;
+  height: auto;
+  color: rgba(var(--color-foreground));
+  width: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.slideshow--nav-button:after {
+  display: none;
+}
+
+.slideshow--nav-button::after {
+  font-size: 1.4rem;
+}
+
+@media only screen and (max-width: 749px) {
+  .slideshow--nav-button {
+    top: unset;
+    bottom: 1.2rem;
+    z-index: 99;
+  }
+  .slideshow--nav-button:after {
+    font-size: 1.4rem;
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW PAGINATION DOTS
+ * ===================================================================== */
+
+.slideshow--slider .slideshow--bullet-button {
+  position: unset;
+  width: unset;
+  left: auto;
+  line-height: 0;
+  padding: 0 0.6rem;
+}
+
+.slideshow--bullet-button.pagination--dots {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.slideshow--bullet-button.pagination--dots .swiper-pagination-bullet {
+  background: transparent;
+  width: 1.8rem;
+  height: 1.8rem;
+  opacity: 1;
+  text-indent: -9999px;
+  border: 0.2rem solid rgba(var(--color-foreground));
+  border-radius: 100%;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0;
+}
+
+@media only screen and (min-width: 750px) {
+  .slideshow--bullet-button.pagination--dots .swiper-pagination-bullet {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}
+
+.slideshow--bullet-button .swiper-pagination-bullet + .swiper-pagination-bullet {
+  margin-left: 0.8rem;
+}
+
+.slideshow--bullet-button .swiper-pagination-bullet {
+  position: relative;
+}
+
+.slideshow--bullet-button .swiper-pagination-bullet:before {
+  position: absolute;
+  background-color: transparent;
+  content: "";
+  width: 1.1rem;
+  height: 1.1rem;
+  left: 50%;
+  border-radius: 100%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: var(--transition);
+}
+
+@media only screen and (min-width: 750px) {
+  .slideshow--bullet-button .swiper-pagination-bullet::before {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+
+.slideshow--bullet-button .swiper-pagination-bullet.swiper-pagination-bullet-active::before {
+  background-color: rgba(var(--color-foreground));
+}
+
+.slideshow--bullet-button.pagination--dots .swiper-pagination-bullet:focus-visible {
+  outline-color: rgb(var(--color-foreground));
+}
+
+/* =====================================================================
+ * SLIDESHOW NAVIGATION - SPLIT CONTROLS
+ * ===================================================================== */
+
+.navigation--button-style-split .slideshow--controls--inner {
+  justify-content: center;
+  gap: 1rem;
+  padding-block-end: 1rem;
+}
+
+.navigation--button-style-split .slideshow--navigation {
+  display: inline-flex;
+  background: rgba(var(--color-background));
+  z-index: 1;
+  height: auto;
+  color: rgba(var(--color-foreground));
+  border-radius: 2rem;
+  gap: 1.2rem;
+}
+
+@media only screen and (min-width: 750px) {
+  .navigation--button-style-split .slideshow--controls--inner{
+    justify-content: space-between;
+  }
+  .navigation--button-style-split .slideshow--navigation {
+    box-shadow: 0 0 1rem rgba(var(--color-foreground), 0.1);
+  }
+}
+
+.navigation--button-style-split .slideshow--navigation .slideshow--nav-button {
+  padding: 0;
+}
+
+.navigation--button-style-split .swiper-button-prev.slideshow--nav-button {
+  padding-inline-start: 1.2rem;
+  padding-block: 0.7rem;
+}
+
+.navigation--button-style-split .swiper-button-next.slideshow--nav-button {
+  padding-inline-end: 1.2rem;
+  padding-block: 0.7rem;
+}
+
+.navigation--button-style-split .swiper-pagination.slideshow--bullet-button {
+  padding: 0;
+}
+
+.navigation--button-style-split .slideshow--bullet-button .swiper-pagination-bullet {
+  width: 2rem;
+  height: 2rem;
+}
+
+@media only screen and (min-width: 750px) {
+  .navigation--button-style-split .slideshow--bullet-button .swiper-pagination-bullet {
+    width: 2rem;
+    height: 2rem;
+  }
+  .navigation--button-style-split .slideshow--bullet-button .swiper-pagination-bullet:before {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW NAVIGATION - INLINE CONTROLS
+ * ===================================================================== */
+
+.navigation--button-style-inline .slideshow--controls--inner {
+  justify-content: flex-start;
+  gap: 0;
+  padding-block-end: 1rem;
+}
+
+.navigation--button-style-inline .slideshow--navigation {
+  display: inline-flex;
+}
+
+/* =====================================================================
+ * SLIDESHOW CUSTOM PAGINATION COLORS
+ * ===================================================================== */
+
+/* Custom pagination color - Desktop */
+@media only screen and (min-width: 750px) {
+  .slideshow--slider[style*="--pagination-color-desktop"] .slideshow--bullet-button .swiper-pagination-bullet {
+    border-color: var(--pagination-color-desktop);
+  }
+
+  .slideshow--slider[style*="--pagination-color-desktop"] .slideshow--bullet-button .swiper-pagination-bullet.swiper-pagination-bullet-active::before {
+    background-color: var(--pagination-color-desktop);
+  }
+}
+
+/* Custom pagination color - Mobile */
+@media only screen and (max-width: 749px) {
+  .slideshow--slider[style*="--pagination-color-mobile"] .slideshow--bullet-button .swiper-pagination-bullet {
+    border-color: var(--pagination-color-mobile);
+  }
+
+  .slideshow--slider[style*="--pagination-color-mobile"] .slideshow--bullet-button .swiper-pagination-bullet.swiper-pagination-bullet-active::before {
+    background-color: var(--pagination-color-mobile);
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW NAVIGATION ICONS
+ * ===================================================================== */
+
+/* Long Arrow Icon */
+.slideshow--slider .navigation--icon-long_arrow .slideshow--nav-button > svg {
+  width: 3.5rem;
+  height: auto;
+  transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  opacity: 0.5;
+}
+
+.slideshow--slider .navigation--icon-long_arrow .slideshow--nav-button:hover > svg {
+  transform: scaleX(1.1);
+  opacity: 1;
+}
+
+/* Small Arrow Icon */
+.slideshow--navigation.navigation--icon-small_arrow .slideshow--nav-button > svg,
+.slideshow--controls--inner.navigation--icon-small_arrow .slideshow--nav-button > svg {
+  width: 2rem;
+}
+
+.navigation--button-style-split .slideshow--navigation.navigation--icon-small_arrow {
+  max-height: 3rem;
+}
+
+/* Chevron Icon */
+.navigation--button-style-split .slideshow--navigation.navigation--icon-chevron .swiper-button-prev.slideshow--nav-button {
+  padding-inline-start: 1.5rem;
+  padding-inline-end: 0.5rem;
+}
+
+.navigation--button-style-split .slideshow--navigation.navigation--icon-chevron .swiper-button-next.slideshow--nav-button {
+  padding-inline-end: 1.5rem;
+  padding-inline-start: 0.5rem;
+}
+
+.navigation--button-style-split .slideshow--navigation.navigation--icon-chevron .slideshow--nav-button > svg {
+  opacity: 0.5;
+  transition: opacity 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.navigation--button-style-split .slideshow--navigation.navigation--icon-chevron .slideshow--nav-button:hover > svg {
+  opacity: 1;
+}
+
+/* =====================================================================
+ * SLIDESHOW MOBILE CONTENT MODES
+ * ===================================================================== */
+
+/* Content Below Image on Mobile */
+@media only screen and (max-width: 749px) {
+  .slideshow-slide--content-below {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slideshow-slide--content-below .slideshow__media {
+    position: relative;
+  }
+
+  .slideshow-slide--content-below .slider-mobile--media {
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+
+  .slideshow-slide--content-below .slider-mobile--media > * {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    object-position: center center;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .slideshow-slide--content-below .slider-mobile--media.placeholder {
+    height: auto;
+    background: transparent;
+  }
+
+  .slideshow-slide--content-below .slideshow__mobile--media--large {
+    min-height: 39rem;
+  }
+
+  .slideshow-slide--content-below .slideshow__mobile--media--medium {
+    min-height: 34rem;
+  }
+
+  .slideshow-slide--content-below .slideshow__mobile--media--small {
+    min-height: 28rem;
+  }
+
+  .slideshow-slide--content-below .slideshow__text-wrapper {
+    position: relative;
+    padding: 1rem;
+    inset: auto;
+  }
+
+  /* Content On Image (default) */
+  .slideshow-slide--content-overlay .slideshow__text-wrapper.show_content--on-image {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    flex-grow: 1;
+    right: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+  }
+
+  .slideshow--slider.slider--controls--button.slideshow--mobile-navs-hide,
+  .slideshow--mobile-dots-hide {
+    display: none;
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW PLACEHOLDER
+ * ===================================================================== */
+
+.slide__placeholder {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-40%, -50%);
+  width: 100%;
+  fill: currentColor;
+}
+
+@media only screen and (min-width: 1200px) {
+  .slide__placeholder {
+    transform: translate(-30%, -50%);
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  .slide__placeholder {
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* =====================================================================
+ * SLIDESHOW FLEXBOX POSITION UTILITIES
+ * Matches original Mavon Liquid theme class structure
+ * ===================================================================== */
+
+/* Justify Content (vertical position) */
+.justify-content-start {
+  justify-content: flex-start;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+/* Align Items (horizontal position) */
+.align-items-start {
+  align-items: flex-start;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-end {
+  align-items: flex-end;
+}
+
+/* =====================================================================
+ * SLIDESHOW VISIBILITY UTILITIES
+ * Desktop/Mobile image and content visibility
+ * ===================================================================== */
+
+/* Hide on mobile (< 750px), show on desktop */
+.d-sm-none {
+  display: block;
+}
+
+@media only screen and (max-width: 749px) {
+  .d-sm-none {
+    display: none !important;
+  }
+}
+
+/* Show only on mobile (< 750px), hide on desktop */
+.d-sm-only-visible {
+  display: none;
+}
+
+@media only screen and (max-width: 749px) {
+  .d-sm-only-visible {
+    display: block !important;
+  }
+}
+
+/* =====================================================================
+ * SECTION TEXT WITH ICONS
+ * Following Mavon text-with-icons.css pattern
+ * ===================================================================== */
+
+.section-text-with-icons {
+  padding-top: calc(var(--section-padding-top-desktop) * 1px);
+  padding-bottom: calc(var(--section-padding-bottom-desktop) * 1px);
+}
+
+@media only screen and (max-width: 749px) {
+  .section-text-with-icons {
+    padding-top: calc(var(--section-padding-top-mobile) * 1px);
+    padding-bottom: calc(var(--section-padding-bottom-mobile) * 1px);
+  }
+}
+
+/* Grid Layout */
+.text-with-icons__grid {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+/* Single Feature Base */
+.single-feature {
+  display: flex;
+  gap: 1.9rem;
+  position: relative;
+  padding: 2.5rem 0;
+}
+
+.single-feature__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  max-width: 4rem;
+}
+
+.single-feature__icon {
+  color: rgba(var(--color-foreground));
+  width: 5rem;
+  height: auto;
+}
+
+.single-feature__image {
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  height: auto;
+  width: auto;
+}
+
+.single-feature__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-feature__heading {
+  color: rgba(var(--color-foreground));
+}
+
+.single-feature__text {
+  line-height: 1.8;
+  color: rgba(var(--color-foreground), 0.7);
+  margin: 0;
+}
+
+/* =====================================================================
+ * DESKTOP GRID LAYOUTS (750px+)
+ * ===================================================================== */
+@media only screen and (min-width: 750px) {
+  /* 3 Column Grid */
+  .text-with-icons__grid--desktop-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 5rem;
+    row-gap: 5rem;
+  }
+
+  /* 4 Column Grid - tablet shows 3 columns */
+  .text-with-icons__grid--desktop-4:not(.text-with-icons--vertical) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 5rem;
+    row-gap: 3rem;
+  }
+
+  .text-with-icons__grid--desktop-4.text-with-icons--vertical {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5rem;
+    row-gap: 5rem;
+  }
+
+  /* Border using pseudo-element */
+  .text-with-icons--has-border .single-feature + .single-feature::before {
+    border-left: 1px solid var(--border-color, #B0B0B0);
+    position: absolute;
+    content: "";
+    height: 100%;
+    top: 0;
+  }
+
+  /* Border position for 3 column */
+  .text-with-icons__grid--desktop-3 .single-feature + .single-feature::before {
+    left: -2.5rem;
+  }
+
+  /* Hide border on first item of each row (3 columns) */
+  .text-with-icons__grid--desktop-3 .single-feature:nth-child(3n + 1)::before {
+    display: none;
+  }
+
+  /* Border position for 4 column */
+  .text-with-icons__grid--desktop-4 .single-feature + .single-feature::before {
+    left: -2.5rem;
+  }
+
+  /* Hide border on first item of each row (4 columns on desktop) */
+  .text-with-icons__grid--desktop-4.text-with-icons--vertical .single-feature:nth-child(4n + 1)::before {
+    display: none;
+  }
+
+  /* Hide border on first item of each row (3 columns on tablet for 4-col grid) */
+  .text-with-icons__grid--desktop-4:not(.text-with-icons--vertical) .single-feature:nth-child(3n + 1)::before {
+    display: none;
+  }
+}
+
+/* Large Desktop (992px+) */
+@media only screen and (min-width: 992px) {
+  .single-feature__icon-wrapper {
+    max-width: 7rem;
+  }
+
+  /* 3 Column Grid - larger gaps */
+  .text-with-icons__grid--desktop-3 {
+    column-gap: 15rem;
+    row-gap: 5rem;
+  }
+
+  .text-with-icons__grid--desktop-3 .single-feature + .single-feature::before {
+    left: -7.5rem;
+  }
+
+  /* 4 Column Grid - full 4 columns */
+  .text-with-icons__grid--desktop-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5rem;
+    row-gap: 5rem;
+  }
+
+  /* Hide border on first item of each row (4 columns) */
+  .text-with-icons__grid--desktop-4 .single-feature:nth-child(4n + 1)::before {
+    display: none;
+  }
+
+  /* Horizontal layout content width */
+  .text-with-icons--horizontal .single-feature__content {
+    width: calc(100% - 7rem);
+  }
+}
+
+/* =====================================================================
+ * CONTENT POSITION - HORIZONTAL (icon left, content right)
+ * ===================================================================== */
+.text-with-icons--horizontal .single-feature {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Horizontal + Right alignment (icon right, content left) */
+@media only screen and (min-width: 750px) {
+  .text-with-icons--horizontal .single-feature {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .text-with-icons--horizontal.text-with-icons--align-right .single-feature {
+    flex-direction: row-reverse;
+  }
+
+  .text-with-icons--horizontal.text-with-icons--align-right .single-feature__content {
+    text-align: right;
+  }
+}
+
+/* =====================================================================
+ * CONTENT POSITION - VERTICAL (icon top, content below)
+ * ===================================================================== */
+.text-with-icons--vertical .single-feature {
+  flex-direction: column;
+}
+
+/* Vertical + Left alignment */
+.text-with-icons--vertical.text-with-icons--align-left .single-feature {
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Vertical + Center alignment */
+.text-with-icons--vertical.text-with-icons--align-center .single-feature {
+  align-items: center;
+  text-align: center;
+}
+
+.text-with-icons--vertical.text-with-icons--align-center .single-feature__content {
+  align-items: center;
+}
+
+/* Vertical + Right alignment */
+.text-with-icons--vertical.text-with-icons--align-right .single-feature {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.text-with-icons--vertical.text-with-icons--align-right .single-feature__content {
+  align-items: flex-end;
+}
+
+/* =====================================================================
+ * MOBILE STYLES (below 750px)
+ * ===================================================================== */
+@media only screen and (max-width: 749px) {
+  .single-feature {
+    gap: 1.5rem;
+    position: relative;
+    padding: 0 2rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .single-feature__content {
+    text-align: center;
+  }
+
+  .text-with-icons__grid--desktop-3,
+  .text-with-icons__grid--desktop-4 {
+    gap: 5rem;
+  }
+
+  /* Remove pseudo-element borders on mobile */
+  .text-with-icons--has-border .single-feature::before {
+    display: none !important;
+  }
+}
+
+/* =====================================================================
+ * SECTION SCROLLING TEXT
+ * Following Mavon scrolling-text.css pattern
+ * ===================================================================== */
+
+.section-scrolling-text {
+  padding-top: calc(var(--section-padding-top-desktop) * 1px);
+  padding-bottom: calc(var(--section-padding-bottom-desktop) * 1px);
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 749px) {
+  .section-scrolling-text {
+    padding-top: calc(var(--section-padding-top-mobile) * 1px);
+    padding-bottom: calc(var(--section-padding-bottom-mobile) * 1px);
+  }
+}
+
+/* Scrolling Container */
+.scrolling--text {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  justify-content: center;
+}
+
+/* Scrolling Item */
+.scrolling--item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.scrolling--item.scrolling--animated {
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-duration: var(--duration, 15s);
+  animation-play-state: running;
+  width: max-content;
+  will-change: transform, width;
+}
+
+/* Direction - Left */
+.scrolling--text--left .scrolling--animated {
+  animation-name: scrolling-left;
+}
+
+/* Direction - Right */
+.scrolling--text--right .scrolling--animated {
+  animation-name: scrolling-right;
+}
+
+/* Pause on hover (desktop only) */
+@media screen and (hover: hover) {
+  .scrolling--text:hover .scrolling--animated {
+    animation-play-state: paused;
+  }
+}
+
+/* Paused state (when not in viewport) */
+.scrolling--text--paused .scrolling--animated {
+  animation-play-state: paused;
+}
+
+/* Scrolling Item Inner */
+.scrolling--item__inner {
+  margin: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+/* Column Gap - Small */
+.scrolling--item__inner.column--gap-small {
+  margin: 0 2.5rem;
+}
+
+/* Column Gap - Medium */
+.scrolling--item__inner.column--gap-medium {
+  margin: 0 5rem;
+}
+
+/* Column Gap - Large */
+.scrolling--item__inner.column--gap-large {
+  margin: 0 8rem;
+}
+
+/* Scrolling Text Content */
+.scrolling--text__content {
+  white-space: nowrap;
+  color: rgba(var(--color-foreground));
+}
+
+/* Text Size Classes */
+.scrolling--item__inner.body-text {
+  font-weight: 700;
+}
+
+/* Text Stroke Effect */
+@supports (-webkit-text-stroke: 0.1rem rgba(var(--color-foreground))) {
+  .scrolling--item__text--stroke .scrolling--text__content {
+    color: transparent;
+    -webkit-text-stroke-color: rgba(var(--color-foreground));
+    -webkit-text-stroke-width: 0.1rem;
+  }
+
+  .scrolling--item__inner.h2.scrolling--item__text--stroke .scrolling--text__content,
+  .scrolling--item__inner.h1.scrolling--item__text--stroke .scrolling--text__content,
+  .scrolling--item__inner.h0.scrolling--item__text--stroke .scrolling--text__content {
+    -webkit-text-stroke-width: 0.15rem;
+  }
+}
+
+/* Image/Video Styles */
+.scrolling--media-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrolling--media-img,
+.scrolling--media-video {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: var(--scrolling-media-height, 100px);
+  object-fit: cover;
+  border-radius: var(--scrolling-media-radius, 0);
+}
+
+/* Make video square to match circular images */
+.scrolling--media-video {
+  width: 100%;
+}
+.scrolling--item-video{
+  width: calc( var(--scrolling-media-height, 150px) * 1.7)
+}
+.scrolling--item-video .scrolling--link{
+  width: 100%;
+}
+
+.scrolling--link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Keyframes */
+@keyframes scrolling-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes scrolling-right {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Mobile Responsive */
+@media only screen and (max-width: 749px) {
+  .scrolling--item__inner {
+    margin: 0 1.5rem;
+  }
+
+  .scrolling--item__inner.column--gap-small {
+    margin: 0 1.5rem;
+  }
+
+  .scrolling--item__inner.column--gap-medium {
+    margin: 0 2.5rem;
+  }
+
+  .scrolling--item__inner.column--gap-large {
+    margin: 0 4rem;
+  }
+
+  .scrolling--item__inner.h0 {
+    font-size: 3.5rem;
+  }
+
+  .scrolling--item__inner.h1 {
+    font-size: 2.8rem;
+  }
+
+  .scrolling--item__inner.h2 {
+    font-size: 2.2rem;
+  }
+
+  .scrolling--item__inner.h3 {
+    font-size: 1.8rem;
+  }
+}

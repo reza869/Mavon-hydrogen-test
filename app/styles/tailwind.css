@@ -1,0 +1,299 @@
+/**
+ * Mavon Hydrogen - Tailwind CSS v4 Configuration
+ *
+ * This file configures Tailwind CSS v4 using the CSS-first approach.
+ * All theme values reference CSS variables defined in variables.css and color-schemes.css
+ * to maintain consistency with the Mavon Liquid theme's design system.
+ *
+ * IMPORTANT: Colors use RGB triplet format (e.g., "255, 255, 255") in color-schemes.css
+ * to allow alpha manipulation. Tailwind utilities wrap them with rgb() or rgba().
+ *
+ * https://tailwindcss.com/docs/v4-beta#css-first-configuration
+ */
+ 
+ @import 'tailwindcss';
+ 
+ /**
+  * Theme Configuration
+  * Non-color theme tokens that don't need rgb() wrapping
+  */
+ @theme {
+   /* ===================================================================
+    * BREAKPOINTS
+    * Custom breakpoints for Mavon responsive behavior
+    * =================================================================== */
+   --breakpoint-md-750: 750px;
+
+   /* ===================================================================
+    * TYPOGRAPHY
+    * =================================================================== */
+   --font-family-body: var(--font-body-family);
+   --font-family-heading: var(--font-heading-family);
+  
+   /* ===================================================================
+    * SPACING & SIZING
+    * =================================================================== */
+   --spacing-page-width: var(--page-width);
+   --spacing-container: var(--container-lg-width);
+   --spacing-container-fluid: var(--container-fluid-offset);
+   --spacing-header: var(--header-height);
+   --spacing-aside: var(--aside-width);
+   --spacing-grid-item: var(--grid-item-width);
+  
+   /* Grid spacing */
+   --spacing-grid-x: var(--grid-desktop-horizontal-spacing);
+   --spacing-grid-y: var(--grid-desktop-vertical-spacing);
+  
+   /* ===================================================================
+    * BORDER RADIUS
+    * =================================================================== */
+   --radius-button: var(--button-border-radius);
+   --radius-media: var(--media-radius);
+   --radius-popup: var(--popup-corner-radius);
+  
+   /* ===================================================================
+    * TRANSITIONS
+    * =================================================================== */
+   --transition-short: var(--duration-short);
+   --transition-default: var(--duration-default);
+   --transition-long: var(--duration-long);
+   --transition-extra-long: var(--duration-extra-long);
+  
+   /* ===================================================================
+    * SHADOWS
+    * =================================================================== */
+   --shadow-popup: var(--popup-shadow-horizontal-offset) var(--popup-shadow-vertical-offset) var(--popup-shadow-blur-radius) rgba(var(--color-shadow), var(--popup-shadow-opacity));
+ }
+  
+ /**
+  * Custom Utility Classes
+  *
+  * Colors are defined here as utilities instead of @theme to properly
+  * wrap Mavon's RGB triplet variables with rgb()/rgba().
+  *
+  * Usage: bg-background, text-foreground, border-button, etc.
+  */
+ @layer utilities {
+   /* ===================================================================
+    * BACKGROUND COLORS
+    * =================================================================== */
+   .bg-background {
+     background-color: rgb(var(--color-background));
+   }
+   .bg-foreground {
+     background-color: rgb(var(--color-foreground));
+   }
+   .bg-button {
+     background-color: rgb(var(--color-button));
+   }
+   .bg-button-hover {
+     background-color: rgb(var(--primary-button-hover-background));
+   }
+   .bg-secondary-button {
+     background-color: rgb(var(--color-secondary-button-text));
+   }
+   .bg-secondary-button-hover {
+     background-color: rgb(var(--secondary-button-hover-background));
+   }
+   .bg-badge {
+     background-color: rgb(var(--color-badge-background));
+   }
+   .bg-product-button {
+     background-color: rgb(var(--product-color-button));
+   }
+   .bg-product-button-hover {
+     background-color: rgb(var(--product-button-hover-background));
+   }
+   .bg-shadow {
+     background-color: rgb(var(--color-shadow));
+   }
+   .bg-placeholder {
+     background-color: rgb(var(--placeholder-background));
+   }
+  
+   /* ===================================================================
+    * TEXT COLORS
+    * =================================================================== */
+   .text-background {
+     color: rgb(var(--color-background));
+   }
+   .text-foreground {
+     color: rgb(var(--color-foreground));
+   }
+   .text-button {
+     color: rgb(var(--color-button-text));
+   }
+   .text-button-hover {
+     color: rgb(var(--primary-button-hover-text));
+   }
+   .text-secondary-button {
+     color: rgb(var(--color-secondary-button-text));
+   }
+   .text-secondary-button-hover {
+     color: rgb(var(--secondary-button-hover-text));
+   }
+   .text-link {
+     color: rgb(var(--color-link));
+   }
+   .text-link-hover {
+     color: rgb(var(--text-link-hover-color));
+   }
+   .text-badge {
+     color: rgb(var(--color-badge-foreground));
+   }
+   .text-product-button {
+     color: rgb(var(--product-color-button-text));
+   }
+   .text-product-button-hover {
+     color: rgb(var(--product-button-hover-text));
+   }
+   .text-placeholder {
+     color: rgb(var(--placeholder-foreground));
+   }
+  
+   /* ===================================================================
+    * BORDER COLORS
+    * =================================================================== */
+   .border-background {
+     border-color: rgb(var(--color-background));
+   }
+   .border-foreground {
+     border-color: rgb(var(--color-foreground));
+   }
+   .border-button {
+     border-color: rgb(var(--color-button));
+   }
+   .border-secondary-button {
+     border-color: rgb(var(--color-secondary-button-text));
+   }
+   .border-badge {
+     border-color: rgb(var(--color-badge-border));
+   }
+   .border-shadow {
+     border-color: rgb(var(--color-shadow));
+   }
+  
+   /* ===================================================================
+    * COLORS WITH ALPHA (opacity variants)
+    * Usage: bg-foreground-10 for 10% opacity
+    * =================================================================== */
+   .bg-foreground-5 {
+     background-color: rgba(var(--color-foreground), 0.05);
+   }
+   .bg-foreground-10 {
+     background-color: rgba(var(--color-foreground), 0.1);
+   }
+   .bg-foreground-20 {
+     background-color: rgba(var(--color-foreground), 0.2);
+   }
+   .bg-foreground-50 {
+     background-color: rgba(var(--color-foreground), 0.5);
+   }
+   .bg-background-50 {
+     background-color: rgba(var(--color-background), 0.5);
+   }
+   .bg-shadow-20 {
+     background-color: rgba(var(--color-shadow), 0.2);
+   }
+   .bg-shadow-30 {
+     background-color: rgba(var(--color-shadow), 0.3);
+   }
+  
+   .text-foreground-50 {
+     color: rgba(var(--color-foreground), 0.5);
+   }
+   .text-foreground-75 {
+     color: rgba(var(--color-foreground), 0.75);
+   }
+  
+   .border-foreground-10 {
+     border-color: rgba(var(--color-foreground), 0.1);
+   }
+   .border-foreground-20 {
+     border-color: rgba(var(--color-foreground), 0.2);
+   }
+   .border-foreground-50 {
+     border-color: rgba(var(--color-foreground), 0.5);
+   }
+  
+   /* ===================================================================
+    * CONTAINER UTILITIES
+    * =================================================================== */
+   .max-w-page {
+     max-width: var(--page-width);
+   }
+   .max-w-container {
+     max-width: var(--container-lg-width);
+   }
+  
+   /* ===================================================================
+    * FONT UTILITIES
+    * =================================================================== */
+   .font-body {
+     font-family: var(--font-body-family);
+     font-style: var(--font-body-style);
+     font-weight: var(--font-body-weight);
+   }
+   .font-heading {
+     font-family: var(--font-heading-family);
+     font-style: var(--font-heading-style);
+     font-weight: var(--font-heading-weight);
+   }
+  
+   /* Legacy aliases */
+   .color-foreground {
+     color: rgb(var(--color-foreground));
+   }
+   .color-background {
+     color: rgb(var(--color-background));
+   }
+  
+   /* ===================================================================
+    * TRANSITION UTILITIES
+    * =================================================================== */
+   .transition-mavon {
+     transition: var(--transition);
+   }
+  
+   /* ===================================================================
+    * BORDER UTILITIES
+    * =================================================================== */
+   .border-w-button {
+     border-width: var(--button-border-width);
+   }
+   .border-w-inputs {
+     border-width: var(--inputs-border-width);
+   }
+  
+   /* ===================================================================
+    * LETTER SPACING
+    * =================================================================== */
+   .tracking-button {
+     letter-spacing: var(--button-letter-spacing);
+   }
+   .tracking-heading {
+     letter-spacing: var(--heading-letter-spacing);
+   }
+   .tracking-body {
+     letter-spacing: var(--body-letter-spacing);
+   }
+  
+   /* ===================================================================
+    * GRADIENT BACKGROUNDS
+    * =================================================================== */
+   .bg-gradient {
+     background: var(--gradient-background);
+   }
+   .bg-accent-gradient {
+     background: var(--accent-highlight-gradient);
+   }
+
+   /* ===================================================================
+    * CONTAINER OVERRIDE
+    * Disable Tailwind's built-in container to prevent conflicts with
+    * base.css container system (640px-991px range)
+    * =================================================================== */
+   .container {
+     max-width: none;
+   }
+ }

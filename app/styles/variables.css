@@ -1,0 +1,160 @@
+/**
+ * Mavon Hydrogen - Root CSS Variables
+ *
+ * These variables mirror the Mavon Shopify Liquid theme's schema settings.
+ * In the original Liquid theme, these values are injected from theme settings.
+ * In Hydrogen, they are manually defined here for now, but the architecture
+ * allows for dynamic injection when a dashboard is introduced.
+ *
+ * Source: layout/theme.liquid (lines 71-202)
+ */
+
+ :root {
+  /* ===================================================================
+   * TYPOGRAPHY
+   * =================================================================== */
+  --font-body-family: 'Lato', sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-size: 1;
+  --font-body-scale: 1;
+  --body-letter-spacing: 0;
+
+  --font-heading-family: 'Chivo', sans-serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 700;
+  --font-heading-size: 1;
+  --font-heading-scale: 1;
+  --heading-letter-spacing: 0em;
+  --header-text-case: none;
+
+  /* ===================================================================
+   * BUTTON SYSTEM
+   * =================================================================== */
+  --button-border-width: 1px;
+  --inputs-border-width: 1px;
+  --button-border-radius: 50px;
+  --button-letter-spacing: 0px;
+  --button-font-size: 1;
+  --button-text-case: none;
+  --button-font-weight: 500;
+
+  /* ===================================================================
+   * LAYOUT & CONTAINER
+   * =================================================================== */
+  --container-lg-width: 143rem;
+  --page-width: 143rem;
+  --container-fluid-offset: 5rem;
+
+  /* ===================================================================
+   * TRANSITIONS & ANIMATIONS
+   * =================================================================== */
+  --transition: all 0.3s ease 0s;
+  --duration-short: 100ms;
+  --duration-default: 200ms;
+  --duration-long: 500ms;
+  --duration-extra-long: 600ms;
+  --ease-out-slow: cubic-bezier(0, 0, 0.3, 1);
+
+  /* Animation definitions */
+  --animation-slide-in: slideIn var(--duration-extra-long) var(--ease-out-slow) forwards;
+  --animation-fade-in: fadeIn var(--duration-extra-long) var(--ease-out-slow);
+
+  /* ===================================================================
+   * GRID SYSTEM
+   * =================================================================== */
+  --grid-desktop-vertical-spacing: 20px;
+  --grid-desktop-horizontal-spacing: 20px;
+  --grid-mobile-vertical-spacing: 20px;
+  --grid-mobile-horizontal-spacing: 20px;
+
+  /* ===================================================================
+   * POPUP & MODAL
+   * =================================================================== */
+  --popup-border-width: 1px;
+  --popup-border-opacity: 0.1;
+  --popup-corner-radius: 0px;
+  --popup-shadow-opacity: 0.05;
+  --popup-shadow-horizontal-offset: 0px;
+  --popup-shadow-vertical-offset: 4px;
+  --popup-shadow-blur-radius: 5px;
+
+  /* ===================================================================
+   * PLACEHOLDERS
+   * =================================================================== */
+  --placeholder-background: 241, 241, 241;
+  --placeholder-foreground: 18, 18, 18;
+
+  /* ===================================================================
+   * ALPHA VALUES (Opacity)
+   * =================================================================== */
+  --alpha-button-background: 1;
+  --alpha-button-border: 1;
+  --alpha-link: 0.85;
+  --alpha-badge-border: 0.1;
+
+  /* ===================================================================
+   * MEDIA SETTINGS
+   * =================================================================== */
+  --media-radius: 0px;
+  --media-border-width: 1px;
+  --media-border-opacity: 0.05;
+  --media-shadow-horizontal-offset: 0px;
+  --media-shadow-vertical-offset: 4px;
+  --media-shadow-blur-radius: 5px;
+  --media-shadow-opacity: 0;
+  --media-shadow-visible: 0;
+
+  /* ===================================================================
+   * HYDROGEN-SPECIFIC (from existing app.css)
+   * =================================================================== */
+  --aside-width: 320px;
+  --cart-aside-summary-height-with-discount: 300px;
+  --cart-aside-summary-height: 250px;
+  --grid-item-width: 355px;
+  --header-height: 64px;
+  --color-dark: #000;
+  --color-light: #fff;
+}
+
+/* =====================================================================
+ * HTML & BODY BASE STYLES
+ * From theme.liquid inline styles (lines 170-201)
+ * ===================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: calc(var(--font-body-size) * 62.5%);
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  font-size: 1.5rem;
+  letter-spacing: var(--body-letter-spacing);
+  line-height: calc(1 + 0.8 / var(--font-body-size));
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+  position: relative;
+  visibility: visible;
+  overflow-x: hidden;
+  /* Font smoothing for consistent rendering across browsers */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@media only screen and (min-width: 992px) {
+  body {
+    font-size: 1.6rem;
+  }
+}
