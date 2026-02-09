@@ -11,8 +11,8 @@ export default async function handler(req) {
     duplex: 'half',
   });
 
-  // Call Hydrogen's server handler
-  const response = await serverHandler.fetch(request, {}, undefined);
+  // Pass process.env as the env parameter so Hydrogen can access environment variables
+  const response = await serverHandler.fetch(request, process.env, undefined);
 
   return response;
 }
