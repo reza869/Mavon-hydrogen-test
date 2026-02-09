@@ -3,6 +3,10 @@ import {storefrontRedirect} from '@shopify/hydrogen';
 import {createRequestHandler} from '@shopify/hydrogen/oxygen';
 import {createHydrogenRouterContext} from '~/lib/context';
 
+// Re-export the server build manifest for Vercel's React Router adapter
+// eslint-disable-next-line import/no-unresolved
+export * from 'virtual:react-router/server-build';
+
 /**
  * Export a fetch handler in module format.
  * Compatible with both Shopify Oxygen and Vercel runtimes.
