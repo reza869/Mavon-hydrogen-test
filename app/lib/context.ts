@@ -39,12 +39,16 @@ export async function createHydrogenRouterContext(
 
   const waitUntil = executionContext?.waitUntil?.bind(executionContext) ?? (() => {});
 
-  // caches.open() is only available on Cloudflare Workers / Oxygen
+  // caches.open() only works on Cloudflare Workers / Oxygen.
+  // On Node.js (Vercel), the caches global may exist but hangs, so skip it entirely.
+  const isOxygen = Boolean(executionContext?.waitUntil);
   let cache: Cache | undefined;
-  try {
-    cache = typeof caches !== 'undefined' ? await caches.open('hydrogen') : undefined;
-  } catch {
-    cache = undefined;
+  if (isOxygen) {
+    try {
+      cache = await caches.open('hydrogen');
+    } catch {
+      cache = undefined;
+    }
   }
 
   const session = await AppSession.init(request, [resolvedEnv.SESSION_SECRET]);
