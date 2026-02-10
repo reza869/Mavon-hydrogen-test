@@ -5,7 +5,8 @@
   "framework": null,
   "functions": {
     "api/index.mjs": {
-      "includeFiles": "build/server/**"
+      "includeFiles": "build/server/**",
+      "maxDuration": 60
     }
   },
   "rewrites": [

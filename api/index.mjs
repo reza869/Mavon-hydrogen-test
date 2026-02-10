@@ -16,27 +16,59 @@ globalThis.caches = {
   keys: async () => [],
 };
 
-console.log('[api] Polyfill applied, importing server build...');
-
 let serverHandler = null;
 let importError = null;
 
-// Try importing at module level, but don't block if it fails
 try {
   const mod = await import('../build/server/index.js');
   serverHandler = mod.default;
-  console.log('[api] Server build imported successfully');
 } catch (e) {
   importError = e;
   console.error('[api] Failed to import server build:', e.message);
 }
 
-export default async function handler(req) {
+/**
+ * Vercel Web Standard fetch handler.
+ * Using the `export default { fetch() }` pattern tells Vercel
+ * to treat this as a Web Standard handler that receives a Web Request
+ * and returns a Web Response (not the legacy req/res pattern).
+ */
+export default {
+  async fetch(request) {
+    return handleRequest(request);
+  },
+};
+
+/**
+ * Named HTTP method exports as fallback.
+ * Vercel recognizes GET, POST, PUT, DELETE, etc. as Web Standard handlers.
+ */
+export async function GET(request) {
+  return handleRequest(request);
+}
+
+export async function POST(request) {
+  return handleRequest(request);
+}
+
+export async function PUT(request) {
+  return handleRequest(request);
+}
+
+export async function DELETE(request) {
+  return handleRequest(request);
+}
+
+export async function PATCH(request) {
+  return handleRequest(request);
+}
+
+async function handleRequest(request) {
   if (importError) {
-    return new Response(`Import Error: ${importError.message}\n${importError.stack}`, {
-      status: 500,
-      headers: { 'Content-Type': 'text/plain' },
-    });
+    return new Response(
+      `Import Error: ${importError.message}\n${importError.stack}`,
+      { status: 500, headers: { 'Content-Type': 'text/plain' } },
+    );
   }
 
   if (!serverHandler) {
@@ -44,27 +76,13 @@ export default async function handler(req) {
   }
 
   try {
-    console.log('[api] Handling request:', req.method, req.url);
-
-    const url = new URL(req.url, `https://${req.headers.get?.('host') || req.headers.host || 'localhost'}`);
-
-    const request = new Request(url.toString(), {
-      method: req.method,
-      headers: req.headers,
-      body: req.method !== 'GET' && req.method !== 'HEAD' ? req.body : undefined,
-      duplex: 'half',
-    });
-
-    console.log('[api] Calling serverHandler.fetch...');
     const response = await serverHandler.fetch(request, process.env, undefined);
-    console.log('[api] Got response:', response.status);
-
     return response;
   } catch (error) {
     console.error('[api] Handler error:', error.message, error.stack);
-    return new Response(`Server Error: ${error.message}\n${error.stack}`, {
-      status: 500,
-      headers: { 'Content-Type': 'text/plain' },
-    });
+    return new Response(
+      `Server Error: ${error.message}\n${error.stack}`,
+      { status: 500, headers: { 'Content-Type': 'text/plain' } },
+    );
   }
 }
