@@ -1,5 +1,4 @@
 // Polyfill caches API for Node.js BEFORE importing anything
-// @shopify/hydrogen internals use caches.open() which hangs on Node.js 24.x
 const noopCache = {
   match: async () => undefined,
   put: async () => {},
@@ -17,12 +16,36 @@ globalThis.caches = {
   keys: async () => [],
 };
 
-// Use dynamic import so the polyfill is applied BEFORE the module loads
-const serverModule = await import('../build/server/index.js');
-const serverHandler = serverModule.default;
+console.log('[api] Polyfill applied, importing server build...');
+
+let serverHandler = null;
+let importError = null;
+
+// Try importing at module level, but don't block if it fails
+try {
+  const mod = await import('../build/server/index.js');
+  serverHandler = mod.default;
+  console.log('[api] Server build imported successfully');
+} catch (e) {
+  importError = e;
+  console.error('[api] Failed to import server build:', e.message);
+}
 
 export default async function handler(req) {
+  if (importError) {
+    return new Response(`Import Error: ${importError.message}\n${importError.stack}`, {
+      status: 500,
+      headers: { 'Content-Type': 'text/plain' },
+    });
+  }
+
+  if (!serverHandler) {
+    return new Response('Server handler not loaded', { status: 500 });
+  }
+
   try {
+    console.log('[api] Handling request:', req.method, req.url);
+
     const url = new URL(req.url, `https://${req.headers.get?.('host') || req.headers.host || 'localhost'}`);
 
     const request = new Request(url.toString(), {
@@ -32,10 +55,16 @@ export default async function handler(req) {
       duplex: 'half',
     });
 
+    console.log('[api] Calling serverHandler.fetch...');
     const response = await serverHandler.fetch(request, process.env, undefined);
+    console.log('[api] Got response:', response.status);
+
     return response;
   } catch (error) {
-    console.error('Serverless function error:', error);
-    return new Response(`Server Error: ${error.message}`, { status: 500 });
+    console.error('[api] Handler error:', error.message, error.stack);
+    return new Response(`Server Error: ${error.message}\n${error.stack}`, {
+      status: 500,
+      headers: { 'Content-Type': 'text/plain' },
+    });
   }
 }
